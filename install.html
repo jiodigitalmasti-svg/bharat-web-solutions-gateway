@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cPanel Auto-Installer — Bharat Web API Gateway</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .install-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(16px, 5vw, 40px);
+      margin: 40px auto;
+      max-width: 800px;
+    }
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background-color: var(--accent);
+      color: #000;
+      border-radius: 50%;
+      font-weight: 800;
+      margin-right: 12px;
+    }
+    .step-box {
+      margin-bottom: 30px;
+      border-left: 2px dashed var(--border);
+      padding-left: 24px;
+      margin-left: 15px;
+    }
+    .step-box:last-of-type {
+      border-left: none;
+    }
+    .log-window {
+      background: var(--bg-dark);
+      padding: 15px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    pre {
+      background: var(--bg-dark);
+      padding: 15px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+    code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Bharat<span>Web</span>
+      </a>
+      <a href="index.html" class="btn btn-secondary" style="padding: 6px 16px; min-height: auto;">Back to Gateway</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="install-card">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <span class="badge badge-success" style="padding: 6px 14px; font-size: 0.8rem; background-color: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid var(--success);">AUTOPILOT CPANEL SCRIPT</span>
+        <h1 style="font-size: clamp(1.8rem, 4vw, 2.8rem); margin-top: 15px; font-weight: 800;">Self-Hosted Server Installer</h1>
+        <p style="color: var(--text-muted); margin-top: 10px;">Setup and host your secure multi-channel messaging API server under your private primary domain name inside any Shared cPanel or VPS environment.</p>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="step-badge">1</span>Download Deployment Package</h3>
+        <p style="color: var(--text-muted); margin: 10px 0 15px 0;">Grab the complete runtime binary repository. It contains pre-bundled Node connection wrappers and responsive dashboard front-end files.</p>
+        <button class="btn btn-primary" onclick="alert('Downloading source repository zip package (v3.2_release)...')" style="color: #000; font-weight: 600;">📥 Download Gateway Zip (14.2 MB)</button>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="step-badge">2</span>Upload to cPanel File Manager</h3>
+        <p style="color: var(--text-muted); margin: 10px 0 15px 0;">Log into your primary host cPanel client panel. Open the <b>File Manager</b> utility and navigate inside the <code>public_html/</code> root index directory or configure a separate subdomain (e.g., <code>api.yourdomain.com</code>).</p>
+        <div class="log-window">
+          <span style="color: var(--accent);">[Action]</span> Upload -&gt; Select "gateway_bws_v3.2.zip" -&gt; Right Click -&gt; Extract All
+        </div>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="step-badge">3</span>Configure Node.js Application Manager</h3>
+        <p style="color: var(--text-muted); margin: 10px 0 15px 0;">Search for <b>Setup Node.js App</b> inside cPanel search options to run your persistent WebSocket background process.</p>
+        <ul style="list-style-type: none; padding-left: 0; font-size: 0.9rem; display: flex; flex-direction: column; gap: 8px;">
+          <li>⚙️ <b>Node Version:</b> Select 18.x or newer LTS</li>
+          <li>⚙️ <b>Application Startup File:</b> <code>server.js</code></li>
+          <li>⚙️ <b>Application URL:</b> Select your desired subdomain URL</li>
+        </ul>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="step-badge">4</span>Run Automated Dependency Install</h3>
+        <p style="color: var(--text-muted); margin: 10px 0 15px 0;">Click the button below to simulate environment verification and dependency installation for client socket protocol elements.</p>
+        <button class="btn btn-secondary" onclick="simulateDependencyCheck()" id="btn-dep-check">⚡ Run Remote Environment Diagnostic Check</button>
+        <div id="diagnostic-log" style="display:none; margin-top: 15px;" class="log-window"></div>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="step-badge">5</span>Setup Webhook and Environment File</h3>
+        <p style="color: var(--text-muted); margin: 10px 0 15px 0;">Adjust the database connection configuration by modifying the environment parameter file.</p>
+        <pre><code>PORT=3000
+DATABASE_URL=mongodb://your_user:your_password@localhost:27017/bws_gateway
+WEBHOOK_URL=https://yourdomain.com/incoming-webhook</code></pre>
+      </div>
+
+      <div style="text-align: center; margin-top: 50px; background-color: var(--bg-dark); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border);">
+        <p style="font-weight: 600; color: #fff;">Need custom enterprise cluster configuration?</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Our engineering team can deploy and scale your clusters automatically.</p>
+        <a href="index.html#contact" class="btn btn-primary" style="margin-top: 15px; display: inline-block; color: #000; font-weight: 600;">Contact Enterprise Support</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function simulateDependencyCheck() {
+      const logDiv = document.getElementById('diagnostic-log');
+      const btn = document.getElementById('btn-dep-check');
+      btn.disabled = true;
+      btn.textContent = "Running Diagnostics...";
+      logDiv.style.display = 'block';
+      logDiv.innerHTML = '<span style="color: var(--accent);">[Init]</span> Connecting to remote server daemon...<br>';
+      
+      setTimeout(() => {
+        logDiv.innerHTML += '<span style="color: var(--accent);">[Check]</span> Node.js runtime environment verified (v18.16.0)...<br>';
+      }, 800);
+
+      setTimeout(() => {
+        logDiv.innerHTML += '<span style="color: var(--accent);">[Check]</span> Installing express, ws, mongodb packages...<br>';
+      }, 1600);
+
+      setTimeout(() => {
+        logDiv.innerHTML += '<span style="color: var(--success);">[Success]</span> Environment fully configured! You can now start your app.';
+        btn.textContent = "✅ Diagnostic Completed";
+      }, 2400);
+    }
+  </script>
+</body>
+</html>
